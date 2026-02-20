@@ -1,0 +1,11 @@
+# Archivos compilados de Java
+*.class
+
+# Carpetas de salida comunes de VS Code y Java
+bin/
+out/
+build/
+
+# Configuraciones locales (opcional pero recomendado)
+.vscode/
+.settings/
