@@ -25,7 +25,10 @@ public class TareaTemperatura {
         Scanner sc = new Scanner(System.in);
         int dias, horarios, cantidadRegistros;
         double[][] temperatura;
-        double promedioGeneral, tempMin, tempMax, promedioDia, diaMayor, diaMenor, sumaTemperaturas=0;
+        double[] temperaturaDia, promedioDia;
+        double promedioGeneral, tempMin, tempMax, diaMayor, diaMenor, sumaTemperaturas=0;
+
+// ==================================================================================================================================================
 
         /** 
          * PEDIR AL USUARIO QUE INGRESE LOS DATOS
@@ -61,6 +64,12 @@ public class TareaTemperatura {
         temperatura = new double[dias][horarios];
         cantidadRegistros = dias*horarios;
 
+        //  Inicializar los arreglos "temperaturaDia" y "promedioDia"
+        temperaturaDia = new double[dias];
+        promedioDia = new double[dias];
+
+// ==================================================================================================================================================
+
         /** 
          * COMENZAR A CALCULAR LOS RESULTADOS REQUERIDOS CON UN CICLO "FOR" ANIDADO
          *      1. Promedio general de las temeraturas
@@ -78,23 +87,41 @@ public class TareaTemperatura {
                 temperatura[i][j] = sc.nextDouble();
                 sc.nextLine();
 
-                //  Sumar la cantidad de temperaturas que se van ingresando
+                //  Sumar la cantidad de temperaturas que se van ingresando para utilizarlas en el "promedio general"
                 sumaTemperaturas += temperatura[i][j];
             }
+
+            //  Sumar las temperaturas de cada día y determinar su promedio
+            temperaturaDia[i] = sumaTemperaturas;
+            promedioDia[i] = temperaturaDia[i] / horarios;
         }
 
         //  Determinar el promedio de las temperaturas ingresadas
         promedioGeneral = Promedio(sumaTemperaturas, cantidadRegistros);
 
+// ==================================================================================================================================================
+
         /** 
          *  MOSTRAR LOS RESULTADOS AL USUARIO
         */
        System.out.println("\n========= RESULTADOS =========");
-       System.out.println("PROMEDIO GENERAL: "+promedioGeneral);
-       System.out.println("TEMPERATURA MÁXIMA: ");
+
+       System.out.println("PROMEDIO GENERAL: "+promedioGeneral+"°C");
+
+       System.out.println("TEMPERATURA MÁXIMA: "+"°C");
+
+       System.out.println("-- PROMEDIO DE TEMPERATURA POR DIA --");
+       for(int i=0; i<dias; i++){
+           System.out.println("PROMEDIO DIA "+(i+1)+": "+promedioDia[i]);
+       }
+       
        System.out.println();
-       System.out.println();
+
+       //   CERRAR SCANNER "sc"
+       sc.close();
     }
+
+// ==================================================================================================================================================
 
     /** 
      *  ==========================================
@@ -104,10 +131,11 @@ public class TareaTemperatura {
 
     /*  Método "PROMEDIO DE TEMPERATURAS"
         Este método calcula el promedio general de las temperaturas ingresadas 
+        
+        NOTA: Se puede utilizar para calcular el "Promedio General" y el "Promedio por Día"
     */
     public static double Promedio(double suma, int cantidad){
         return suma/cantidad;
     }
 
-    
 }
