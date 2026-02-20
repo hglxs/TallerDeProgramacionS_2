@@ -23,14 +23,14 @@ public class TareaTemperatura {
 
         //  Declarar variables
         Scanner sc = new Scanner(System.in);
-        int dias, horarios;
+        int dias, horarios, cantidadRegistros;
         double[][] temperatura;
-        double promedioGeneral, tempMin, tempMax, promedioDia, diaMayor, diaMenor;
+        double promedioGeneral, tempMin, tempMax, promedioDia, diaMayor, diaMenor, sumaTemperaturas=0;
 
         /** 
          * PEDIR AL USUARIO QUE INGRESE LOS DATOS
         */
-        System.out.println("\n===== REGISTRO DE TEMPERATURAS =====");
+        System.out.println("\n========== TEMPERATURAS ==========");
         //  Ingresar la cantidad de días
         System.out.print("\nEl programa registra las temperaturas del área de refigeracion durante los dias y horarios que se indiquen.\nINGRESA LA CANTIDAD DE DÍAS: ");
         dias = sc.nextInt();
@@ -57,8 +57,9 @@ public class TareaTemperatura {
             sc.nextLine();
         }
 
-        //  Inicializar la matriz "temperatura"
+        //  Inicializar la matriz "temperatura" y la variable "cantidad de registros"
         temperatura = new double[dias][horarios];
+        cantidadRegistros = dias*horarios;
 
         /** 
          * COMENZAR A CALCULAR LOS RESULTADOS REQUERIDOS CON UN CICLO "FOR" ANIDADO
@@ -67,11 +68,46 @@ public class TareaTemperatura {
          *      3. Promedio de temperatura por día
          *      4. Día con mayor y menor temperatura
         */
+        System.out.println("\n========== REGISTRO DE TEMPERATURAS =========");
         for (int i=0; i<dias; i++){
             for (int j=0; j<horarios; j++){
 
+                //  Registrar las temperaturas del día de acuerdo con la cantidad de horarios deseados
+                System.out.println("\nDIA "+(i+1)+"     HORARIO "+(j+1));
+                System.out.print("TEMPERATURA REGISTRADA: ");
+                temperatura[i][j] = sc.nextDouble();
+                sc.nextLine();
+
+                //  Sumar la cantidad de temperaturas que se van ingresando
+                sumaTemperaturas += temperatura[i][j];
             }
         }
 
+        //  Determinar el promedio de las temperaturas ingresadas
+        promedioGeneral = Promedio(sumaTemperaturas, cantidadRegistros);
+
+        /** 
+         *  MOSTRAR LOS RESULTADOS AL USUARIO
+        */
+       System.out.println("\n========= RESULTADOS =========");
+       System.out.println("PROMEDIO GENERAL: "+promedioGeneral);
+       System.out.println("TEMPERATURA MÁXIMA: ");
+       System.out.println();
+       System.out.println();
     }
+
+    /** 
+     *  ==========================================
+     *                  MÉTODOS
+     *  ==========================================
+    */
+
+    /*  Método "PROMEDIO DE TEMPERATURAS"
+        Este método calcula el promedio general de las temperaturas ingresadas 
+    */
+    public static double Promedio(double suma, int cantidad){
+        return suma/cantidad;
+    }
+
+    
 }
