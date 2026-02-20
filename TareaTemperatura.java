@@ -36,10 +36,26 @@ public class TareaTemperatura {
         dias = sc.nextInt();
         sc.nextLine();      //  Limpiar el Scanner
 
+        //  Comprobar que la cantidad sea positiva
+        while(!(dias>0)){
+            System.err.println("\nLA CANTIDAD INGRESADA TIENE QUE SER POSITIVA...\nPOR FAVOR, VUELVE A INGRESAR EL DATO...");
+            System.out.print("\nCANTIDAD DE DIAS: ");
+            dias = sc.nextInt();
+            sc.nextLine();
+        }
+
         //  Ingresar la cantidad de horarios
         System.out.print("INGRESA LA CANTIDAD DE HORARIOS: ");
         horarios = sc.nextInt();
         sc.nextLine();      //  Limpiar el Scanner
+
+        //  Comprobar que la cantidad sea positiva
+        while(!(horarios>0)){
+            System.err.println("\nLA CANTIDAD INGRESADA TIENE QUE SER POSITIVA...\nPOR FAVOR, VUELVE A INGRESAR EL DATO...");
+            System.out.print("\nCANTIDAD DE HORARIOS: ");
+            dias = sc.nextInt();
+            sc.nextLine();
+        }
 
         //  Inicializar la matriz "temperatura"
         temperatura = new double[dias][horarios];
@@ -51,6 +67,11 @@ public class TareaTemperatura {
          *      3. Promedio de temperatura por día
          *      4. Día con mayor y menor temperatura
         */
+        for (int i=0; i<dias; i++){
+            for (int j=0; j<horarios; j++){
+
+            }
+        }
 
     }
 }
