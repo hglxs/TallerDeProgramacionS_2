@@ -2,7 +2,7 @@
 import java.util.Scanner;
 
 public class FigurasEjemplo {
-    //  Inicializar variables globales de forma global
+    //  Inicializar variables globales
     public static Scanner sc = new Scanner(System.in);
     public static String resultados;
 
